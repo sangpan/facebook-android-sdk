@@ -365,6 +365,10 @@ public class LoginManager {
         validateReadPermissions(permissions);
 
         LoginClient.Request loginRequest = createLoginRequest(permissions);
+        if(AccessToken.isCurrentAccessTokenActive() == false)
+        {
+            authType = ServerProtocol.DIALOG_REAUTHORIZE_AUTH_TYPE;
+        }
         loginRequest.setAuthType(authType);
         startLogin(new FragmentStartActivityDelegate(fragment), loginRequest);
     }
@@ -378,6 +382,10 @@ public class LoginManager {
         validateReadPermissions(permissions);
 
         LoginClient.Request loginRequest = createLoginRequest(permissions);
+        if(AccessToken.isCurrentAccessTokenActive() == false)
+        {
+            authType = ServerProtocol.DIALOG_REAUTHORIZE_AUTH_TYPE;
+        }
         loginRequest.setAuthType(authType);
         startLogin(new ActivityStartActivityDelegate(activity), loginRequest);
     }
