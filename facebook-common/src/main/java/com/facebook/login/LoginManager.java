@@ -365,7 +365,9 @@ public class LoginManager {
         validateReadPermissions(permissions);
 
         LoginClient.Request loginRequest = createLoginRequest(permissions);
-        if(AccessToken.isCurrentAccessTokenActive() == false)
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if(accessToken != null && accessToken.isExpired())  //token is exist and expired.
         {
             authType = ServerProtocol.DIALOG_REAUTHORIZE_AUTH_TYPE;
         }
@@ -382,7 +384,9 @@ public class LoginManager {
         validateReadPermissions(permissions);
 
         LoginClient.Request loginRequest = createLoginRequest(permissions);
-        if(AccessToken.isCurrentAccessTokenActive() == false)
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if(accessToken != null && accessToken.isExpired())  //token is exist and expired.
         {
             authType = ServerProtocol.DIALOG_REAUTHORIZE_AUTH_TYPE;
         }
